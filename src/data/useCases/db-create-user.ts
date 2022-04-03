@@ -6,7 +6,7 @@ export class DbCreateUser implements addUser{
       
   ){}
 
-  async add(userDate: UserModel.Params): Promise<UserModel.Result> {
+  async add(userDate: addUser.Params): Promise<addUser.Result> {
     if(userDate !== null && userDate.email !== 'dbz@gmail.com'){
       return true
     }

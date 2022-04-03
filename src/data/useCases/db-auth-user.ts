@@ -3,9 +3,11 @@ import { loadUser } from "@/domain/useCases/load-user";
 
 
 export class DbAuthUser implements loadUser {
-  constructor(){}
+  constructor(
+    
+  ){}
 
-  async auth(userDate: UserModel.Params): Promise<UserModel.Result>{
+  async auth(userDate: loadUser.Params): Promise<loadUser.Result>{
     if(userDate.email === 'dbz@gmail.com' && userDate.password === '123'){
       return true
     }

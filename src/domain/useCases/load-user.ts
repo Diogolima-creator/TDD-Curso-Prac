@@ -1,6 +1,10 @@
 import { UserModel } from "../models"
 
 export interface loadUser {
-    auth?: (userDate: UserModel.Params) => Promise<UserModel.Result>
+    auth?: (userDate: UserModel) => Promise<loadUser.Result>
 }
 
+export namespace loadUser{
+    export type Params = UserModel
+    export type Result = boolean
+}

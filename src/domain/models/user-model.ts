@@ -1,9 +1,5 @@
-export namespace UserModel {
-  export type Params = {
+export interface UserModel {
     id?: string
     email: string
     password: string
-  }
-  
-  export type Result = boolean
 } 
