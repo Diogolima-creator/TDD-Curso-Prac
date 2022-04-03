@@ -10,13 +10,11 @@ export class AuthUser implements User {
       return userDate
     }
     if(userDate.email !== 'dbz@gmail.com'){
-      throw new Error('User/Pass is wrong')
-    }
-    if(userDate.password !== '123'){
-      throw new Error('User/Pass is wrong')
-    }
-    if(userDate === null){
       throw new Error('User not found')
     }
+    if(userDate.password !== '123'){
+      throw new Error('Pass is wrong')
+    }
+  
   }
 }
