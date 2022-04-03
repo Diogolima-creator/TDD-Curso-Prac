@@ -9,4 +9,9 @@ describe('CreateUser',() => {
     expect(promise).toEqual(Object(promise))
   })
 
+  test('Should user auth is successful', () => {
+    const sut = new AuthUser()
+    const promise = sut.auth(mockUserAuth())
+    expect(promise).toEqual(Object(promise))
+  })
 })
