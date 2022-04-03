@@ -1,11 +1,11 @@
 import { CreateUser } from '@/data/useCases'
-import { mockUser, mockUserEmailinUse, mockUserNull } from '@/data/tests'
+import { mockUserCreate, mockUserEmailinUse, mockUserNull } from '@/data/tests'
 
 
 describe('CreateUser',() => {
  test('Should user created on sut.createUser', () => {
     const sut = new CreateUser()
-    const promise = sut.create(mockUser())
+    const promise = sut.create(mockUserCreate())
     expect(promise).toEqual(Object(promise))
   })
 
