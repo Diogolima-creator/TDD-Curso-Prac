@@ -1,2 +1,2 @@
-export * from './db-create-user/create-user'
-export * from './db-authetication-user/auth-user'
+export * from './db-create-user'
+export * from './db-auth-user'

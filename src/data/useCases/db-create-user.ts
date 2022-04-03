@@ -1,7 +1,7 @@
 import { UserModel } from "@/domain/models";
 import { addUser } from "@/domain/useCases/add-user";
 
-export class CreateUser implements addUser{
+export class DbCreateUser implements addUser{
   constructor(
       
   ){}

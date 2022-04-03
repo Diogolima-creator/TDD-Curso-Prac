@@ -2,7 +2,7 @@ import { UserModel } from "@/domain/models";
 import { loadUser } from "@/domain/useCases/load-user";
 
 
-export class AuthUser implements loadUser {
+export class DbAuthUser implements loadUser {
   constructor(){}
 
   async auth(userDate: UserModel.Params): Promise<UserModel.Result>{
