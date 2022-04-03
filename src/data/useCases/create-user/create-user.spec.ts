@@ -15,7 +15,7 @@ describe('CreateUser',() => {
     expect(promise).rejects.toThrow('userDate null')
   })
 
-  test('Should userDate pass value null catch error', () => {
+  test('Should userDate passing an email in use ', () => {
     const sut = new CreateUser()
     const promise = sut.create(mockUserEmailinUse())
     expect(promise).rejects.toThrow('Email in user error')

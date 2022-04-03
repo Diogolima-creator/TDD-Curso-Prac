@@ -1,6 +1,8 @@
 import { UserModel } from "../models"
 
 export interface User {
-    create: (userDate: UserModel) => Promise<UserModel>
+    findbyEmail?: (userDate: UserModel["email"]) => Promise<UserModel>
+    create?: (userDate: UserModel) => Promise<UserModel>
+    auth?: (userDate: UserModel) => Promise<UserModel>
 }
 
