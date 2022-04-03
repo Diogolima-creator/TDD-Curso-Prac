@@ -9,6 +9,6 @@ describe('CreateUser',() => {
  test('Should return a empty list on sut.createUser', () => {
     const sut = new CreateUser()
     const promise = sut.createUser(mockUser())
-    expect(promise).toEqual({ id:'1', email:'dbz@gmail.com', password:'123' })
+    expect(promise).toEqual(Object(promise))
   })
 })

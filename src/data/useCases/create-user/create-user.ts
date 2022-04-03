@@ -8,7 +8,7 @@ export class CreateUser implements User{
   ){}
 
   async createUser(userDate: UserModel): Promise<UserModel> {
-
-    return { id:'1', email:'dbz@gmail.com', password:'123' }
+    
+    return userDate
   }
 }
