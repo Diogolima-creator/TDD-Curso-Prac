@@ -1,5 +1,5 @@
 import { CreateUser } from '@/data/useCases'
-import { mockUser, mockUserNull } from '@/data/tests'
+import { mockUser, mockUserEmailinUse, mockUserNull } from '@/data/tests'
 
 
 describe('CreateUser',() => {
@@ -13,5 +13,11 @@ describe('CreateUser',() => {
     const sut = new CreateUser()
     const promise = sut.create(mockUserNull())
     expect(promise).rejects.toThrow('userDate null')
+  })
+
+  test('Should userDate pass value null catch error', () => {
+    const sut = new CreateUser()
+    const promise = sut.create(mockUserEmailinUse())
+    expect(promise).rejects.toThrow('Email in user error')
   })
 })

@@ -12,10 +12,10 @@ export class CreateUser implements User{
       return userDate
     }
     if(userDate === null){
-      throw new Error("userDate null")
+      throw new Error('userDate null')
     }
     if(userDate.email === 'dbz@gmail.com'){
-      throw new Error("Email in user error")
+      throw new Error('Email in user error')
     }
     
   }
