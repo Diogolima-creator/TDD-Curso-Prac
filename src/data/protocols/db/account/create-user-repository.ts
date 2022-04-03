@@ -1,10 +1,10 @@
-import { addUser } from "@/domain/useCases/add-user"
+import { UserModel } from "@/domain/models"
 
 export interface CreateUserRepository{
-  add:(data: CreateUserRepository.Params)
+  add:(data: CreateUserRepository.Params) => Promise<CreateUserRepository.Result>
 }
 
 export namespace CreateUserRepository{
-  export type Params = addUser.Params
+  export type Params = UserModel.Params
   export type Result = boolean
 }
