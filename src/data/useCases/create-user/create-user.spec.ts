@@ -3,7 +3,7 @@ import { mockUserCreate, mockUserEmailinUse, mockUserNull } from '@/data/tests'
 
 
 describe('CreateUser',() => {
- test('Should user created on sut.createUser', () => {
+ test('Should did user created is successful ', () => {
     const sut = new CreateUser()
     const promise = sut.create(mockUserCreate())
     expect(promise).toEqual(Object(promise))
@@ -15,7 +15,7 @@ describe('CreateUser',() => {
     expect(promise).rejects.toThrow('userDate null')
   })
 
-  test('Should userDate passing an email in use ', () => {
+  test('Should userDate passing an email in use to return an error', () => {
     const sut = new CreateUser()
     const promise = sut.create(mockUserEmailinUse())
     expect(promise).rejects.toThrow('Email in user error')
