@@ -1,7 +1,7 @@
 import { UserModel } from "@/domain/models"
 
-export const mockUserCreate = (): UserModel => ({ id:'1', email:'dbzz@gmail.com', password:'123' })
+export const mockUserCreate = (): UserModel => ({ email:'dbzz@gmail.com', password:'123' })
 
 export const mockUserCreateNull = (): UserModel => (null)
 
-export const mockUserEmailinUse = (): UserModel => ({ id:'1', email:'dbz@gmail.com', password:'123' })
+export const mockUserEmailinUse = (): UserModel => ({ email:'dbz@gmail.com', password:'123' })

@@ -1,5 +1,5 @@
 import { AuthUser } from '@/data/useCases'
-import { mockUserAuth,mockUserEmailWrong } from '@/data/tests'
+import { mockUserAuth,mockUserEmailWrong, mockUserPassWrong } from '@/data/tests'
 
 
 describe('CreateUser',() => {
@@ -15,5 +15,9 @@ describe('CreateUser',() => {
     expect(promise).rejects.toThrow('User not found')
   })
 
-  
+  test('Should user pass the wrong password', () => {
+    const sut = new AuthUser()
+    const promise = sut.auth(mockUserPassWrong())
+    expect(promise).rejects.toThrow('Pass is wrong')
+  })
 })
