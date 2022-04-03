@@ -15,6 +15,5 @@ export class AuthUser implements User {
     if(userDate.password !== '123'){
       throw new Error('Pass is wrong')
     }
-  
   }
 }

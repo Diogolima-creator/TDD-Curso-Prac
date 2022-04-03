@@ -9,9 +9,11 @@ describe('CreateUser',() => {
     expect(promise).toEqual(Object(promise))
   })
 
-  test('Should user auth is successful', () => {
+  test('Should user is not found', () => {
     const sut = new AuthUser()
     const promise = sut.auth(mockUserEmailWrong())
-    expect(promise).rejects.toThrow('Email is wrong')
+    expect(promise).rejects.toThrow('User not found')
   })
+
+  
 })
