@@ -1,24 +1,29 @@
 import { UserModel } from "@/domain/models";
 import { loadUser } from "@/domain/useCases/load-user";
-import { LoadUserByEmailRepository, HashComparer,Encrypter } from "@/data/protocols";
+import { LoadUserByEmailRepository, HashComparer, Encrypter, UpdateAccessTokenRepository } from "@/data/protocols";
 
 
 export class DbAuthUser implements loadUser {
   constructor(
-    private readonly LoadUserByEmail: LoadUserByEmailRepository,
+    private readonly loadUserByEmail: LoadUserByEmailRepository,
     private readonly hashComparer: HashComparer,
     private readonly encrypter: Encrypter,
+    private readonly updateAccessTokenRepository: UpdateAccessTokenRepository
   ){}
 
   async auth(userDate: loadUser.Params): Promise<loadUser.Result>{
-    if(userDate.email === 'dbz@gmail.com' && userDate.password === '123'){
-      return true
+    const account = await this.loadUserByEmail.findByEmail(userDate.email)
+    if(account){
+      const isValid = await this.hashComparer.compare(userDate.password, account.password)
+      if(isValid){
+        const accessToken = await this.encrypter.encrypt(account.id)
+        await this.updateAccessTokenRepository.updateAccessToken(account.id, accessToken)
+        return{
+          accessToken,
+          name: account.email
+        }
+      }
     }
-    if(userDate.email !== 'dbz@gmail.com'){
-      throw new Error('User not found')
-    }
-    if(userDate.password !== '123'){
-      throw new Error('Pass is wrong')
-    }
+    return null
   }
 }

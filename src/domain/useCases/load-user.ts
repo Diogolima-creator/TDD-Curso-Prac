@@ -6,5 +6,9 @@ export interface loadUser {
 
 export namespace loadUser{
     export type Params = UserModel
-    export type Result = boolean
+    
+    export type Result = {
+        accessToken: string
+        name: string
+      }
 }
