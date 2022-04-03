@@ -1,6 +1,6 @@
 import { UserModel } from "../models"
 
 export interface loadUser {
-    auth?: (userDate: UserModel) => Promise<UserModel>
+    auth?: (userDate: UserModel.Params) => Promise<UserModel.Result>
 }
 

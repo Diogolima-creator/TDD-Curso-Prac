@@ -6,7 +6,7 @@ describe('CreateUser',() => {
  test('Should did user created is successful ', () => {
     const sut = new CreateUser()
     const promise = sut.add(mockUserCreate())
-    expect(promise).toEqual(Object(promise))
+    expect(promise).toBe(true)
   })
 
   test('Should userDate pass value null catch error', () => {

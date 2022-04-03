@@ -6,9 +6,9 @@ export class CreateUser implements addUser{
       
   ){}
 
-  async add(userDate: UserModel): Promise<UserModel> {
+  async add(userDate: UserModel.Params): Promise<UserModel.Result> {
     if(userDate !== null && userDate.email !== 'dbz@gmail.com'){
-      return userDate
+      return true
     }
     if(userDate === null){
       throw new Error('userDate null')
