@@ -1,8 +1,8 @@
 import { UserModel } from "@/domain/models";
-import { User } from "@/domain/useCases/User";
+import { loadUser } from "@/domain/useCases/load-user";
 
 
-export class AuthUser implements User {
+export class AuthUser implements loadUser {
   constructor(){}
 
   async auth(userDate: UserModel): Promise<UserModel>{

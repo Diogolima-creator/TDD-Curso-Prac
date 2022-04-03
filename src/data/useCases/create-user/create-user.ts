@@ -1,12 +1,12 @@
 import { UserModel } from "@/domain/models";
-import { User } from "@/domain/useCases/User";
+import { addUser } from "@/domain/useCases/add-user";
 
-export class CreateUser implements User{
+export class CreateUser implements addUser{
   constructor(
       
   ){}
 
-  async create(userDate: UserModel): Promise<UserModel> {
+  async add(userDate: UserModel): Promise<UserModel> {
     if(userDate !== null && userDate.email !== 'dbz@gmail.com'){
       return userDate
     }
