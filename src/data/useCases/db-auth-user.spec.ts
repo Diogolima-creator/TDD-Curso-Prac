@@ -52,11 +52,20 @@ describe('DbAuthUser',() => {
     expect(promise).toBeNull
   })
 
+  test('Should call hashComparer with correct values', async () => {
+    const { sut, loadUserByEmailRepositorySpy, hashComparerSpy } = makesut()
+    const autheticationParams = mockloadUser()
+    await sut.auth(autheticationParams)
+    expect(hashComparerSpy.plaintext).toBe(autheticationParams.password)
+    expect(hashComparerSpy.digest).toBe(loadUserByEmailRepositorySpy.result.password)
+  })
+
   test('Should return null if hashComparer return false', async () => {
     const { sut, hashComparerSpy } = makesut()
     hashComparerSpy.isValid = false
     const promise = await sut.auth(mockloadUser())
     expect(promise).toBeNull
   })
+
 
 })
