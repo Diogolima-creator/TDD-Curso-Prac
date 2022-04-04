@@ -45,6 +45,11 @@ describe('DbAuthUser',() => {
     expect(promise).toBeNull
   })
 
-  
+  test('Should return null if hashComparer return false', async () => {
+    const { sut, hashComparerSpy } = makesut()
+    hashComparerSpy.isValid = false
+    const promise = await sut.auth(mockloadUser())
+    expect(promise).toBeNull
+  })
 
 })
