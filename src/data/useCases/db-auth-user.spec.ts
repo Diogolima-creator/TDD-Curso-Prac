@@ -81,4 +81,11 @@ describe('DbAuthUser',() => {
     expect(encrypterSpy.plaintext).toBe(loadUserByEmailRepositorySpy.result.id)
   })
 
+  test('Should throw if encrypterSpy throws', async () => {
+    const { sut, encrypterSpy } = makesut()
+    jest.spyOn(encrypterSpy, 'encrypt').mockImplementationOnce(throwError)
+    const promise = sut.auth(mockloadUser())
+    await expect(promise).rejects.toThrow()
+  })
+
 })
