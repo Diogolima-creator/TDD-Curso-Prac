@@ -95,11 +95,17 @@ describe('DbAuthUser',() => {
      expect(accessToken).toBe(encrypterSpy.ciphertext)
   })
 
-  test('Should call UpdateAccessTokenRepository with correct values', async () => {
+  test('Should call UpdateAccessTokenRepositorySpy with correct values', async () => {
     const { sut, updateAccessTokenRepositorySpy, loadUserByEmailRepositorySpy, encrypterSpy } = makesut()
     await sut.auth(mockloadUser())
     expect(updateAccessTokenRepositorySpy.id).toBe(loadUserByEmailRepositorySpy.result.id)
     expect(updateAccessTokenRepositorySpy.token).toBe(encrypterSpy.ciphertext)
   })
 
+  test('Should throw if UpdateAccessTokenRepositorySpy throws', async () => {
+    const { sut, updateAccessTokenRepositorySpy } = makesut()
+    jest.spyOn(updateAccessTokenRepositorySpy, 'updateAccessToken').mockImplementationOnce(throwError)
+    const promise = sut.auth(mockloadUser())
+    await expect(promise).rejects.toThrow()
+  })
 })
