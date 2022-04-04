@@ -38,21 +38,21 @@ describe('DbAuthUser',() => {
     expect(loadUserByEmailRepositorySpy.email).toBe(autheticationParams.email)
   })
 
-  test('Should throw if loadUserByEmail throws', async () => {
+  test('Should throw if loadUserByEmailRepositorySpy throws', async () => {
     const { sut, loadUserByEmailRepositorySpy } = makesut()
     jest.spyOn(loadUserByEmailRepositorySpy, 'findByEmail').mockImplementationOnce(throwError)
     const promise = sut.auth(mockloadUser())
     await expect(promise).rejects.toThrow()
   })
   
-  test('Should return null if user is not found', async () => {
+  test('Should return null if loadUserByEmailRepositorySpy is null', async () => {
     const { sut, loadUserByEmailRepositorySpy } = makesut()
     loadUserByEmailRepositorySpy.result = null
     const promise = await sut.auth(mockloadUser())
     expect(promise).toBeNull
   })
 
-  test('Should call hashComparer with correct values', async () => {
+  test('Should call hashComparerSpy with correct values', async () => {
     const { sut, loadUserByEmailRepositorySpy, hashComparerSpy } = makesut()
     const autheticationParams = mockloadUser()
     await sut.auth(autheticationParams)
@@ -60,7 +60,7 @@ describe('DbAuthUser',() => {
     expect(hashComparerSpy.digest).toBe(loadUserByEmailRepositorySpy.result.password)
   })
 
-  test('Should return null if hashComparer return false', async () => {
+  test('Should return null if hashComparerSpy return false', async () => {
     const { sut, hashComparerSpy } = makesut()
     hashComparerSpy.isValid = false
     const promise = await sut.auth(mockloadUser())
@@ -72,6 +72,13 @@ describe('DbAuthUser',() => {
     jest.spyOn(hashComparerSpy, 'compare').mockImplementationOnce(throwError)
     const promise = sut.auth(mockloadUser())
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Should call encrypterSpy with correct values', async () => {
+    const { sut, loadUserByEmailRepositorySpy, encrypterSpy } = makesut()
+    const autheticationParams = mockloadUser()
+    await sut.auth(autheticationParams)
+    expect(encrypterSpy.plaintext).toBe(loadUserByEmailRepositorySpy.result.id)
   })
 
 })
