@@ -1,10 +1,10 @@
 import { addUser } from "@/domain";
 
-export interface addUserRepository {
-  add: (data:addUserRepository.Params) => Promise<addUserRepository.Result>
+export interface AddUserRepository {
+  add: (data:AddUserRepository.Params) => Promise<AddUserRepository.Result>
 }
 
-export namespace addUserRepository{
+export namespace AddUserRepository{
   export type Params = addUser.Params
   export type Result = boolean
 }

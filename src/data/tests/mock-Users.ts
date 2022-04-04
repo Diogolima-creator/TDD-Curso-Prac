@@ -1,4 +1,4 @@
-import { LoadUserByEmailRepository, CheckUserExistsRepository, UpdateAccessTokenRepository, addUserRepository } from "@/data/protocols";
+import { LoadUserByEmailRepository, CheckUserExistsRepository, UpdateAccessTokenRepository, AddUserRepository } from "@/data/protocols";
 
 
 export class LoadUserByEmailRepositorySpy implements LoadUserByEmailRepository {
@@ -35,10 +35,10 @@ export class CheckUserExistsRepositorySpy implements CheckUserExistsRepository {
   }
 }
 
-export class addUserRepositorySpy implements addUserRepository{
-  params: addUserRepository.Params
+export class AddUserRepositorySpy implements AddUserRepository{
+  params: AddUserRepository.Params
   result = true
-  async add (date:addUserRepository.Params) : Promise<addUserRepository.Result>{
+  async add (date:AddUserRepository.Params) : Promise<AddUserRepository.Result>{
     this.params = date
     return this.result
   }
