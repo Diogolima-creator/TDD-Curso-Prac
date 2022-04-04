@@ -20,7 +20,7 @@ export class DbAuthUser implements loadUser {
         await this.updateAccessTokenRepository.updateAccessToken(account.id, accessToken)
         return{
           accessToken,
-          name: account.email
+          email: account.email
         }
       }
     }

@@ -88,4 +88,11 @@ describe('DbAuthUser',() => {
     await expect(promise).rejects.toThrow()
   })
 
+  test('Should return an data on success', async () => {
+    const { sut, loadUserByEmailRepositorySpy, encrypterSpy } = makesut()
+    const { accessToken, email} = await sut.auth(mockloadUser())
+     expect(email).toBe(loadUserByEmailRepositorySpy.result.email)
+     expect(accessToken).toBe(encrypterSpy.ciphertext)
+  })
+
 })

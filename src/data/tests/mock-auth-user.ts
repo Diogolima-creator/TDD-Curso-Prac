@@ -4,7 +4,7 @@ import { LoadUserByEmailRepository, UpdateAccessTokenRepository } from "@/data/p
 export class LoadUserByEmailRepositorySpy implements LoadUserByEmailRepository {
     email: string
     result = {
-        id: '1',
+        id: '12345',
         email: 'dbz@gmail.com',
         password: '123'
     }

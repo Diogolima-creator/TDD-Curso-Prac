@@ -9,6 +9,6 @@ export namespace loadUser{
     
     export type Result = {
         accessToken: string
-        name: string
+        email: string
       }
 }
