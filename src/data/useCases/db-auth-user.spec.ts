@@ -95,4 +95,11 @@ describe('DbAuthUser',() => {
      expect(accessToken).toBe(encrypterSpy.ciphertext)
   })
 
+  test('Should call UpdateAccessTokenRepository with correct values', async () => {
+    const { sut, updateAccessTokenRepositorySpy, loadUserByEmailRepositorySpy, encrypterSpy } = makesut()
+    await sut.auth(mockloadUser())
+    expect(updateAccessTokenRepositorySpy.id).toBe(loadUserByEmailRepositorySpy.result.id)
+    expect(updateAccessTokenRepositorySpy.token).toBe(encrypterSpy.ciphertext)
+  })
+
 })
