@@ -31,10 +31,20 @@ const makesut = (): SutTypes => {
 }
 
 describe('DbAuthUser',() => {
- test('Should user auth is successful', async () => {
+ test('Should return param email if user auth is successful', async () => {
     const { sut, loadUserByEmailRepositorySpy } = makesut()
     const autheticationParams = mockloadUser()
     await sut.auth(autheticationParams)
     expect(loadUserByEmailRepositorySpy.email).toBe(autheticationParams.email)
   })
+
+  test('Should return null if user is not found', async () => {
+    const { sut, loadUserByEmailRepositorySpy } = makesut()
+    loadUserByEmailRepositorySpy.result = null
+    const promise = await sut.auth(mockloadUser())
+    expect(promise).toBeNull
+  })
+
+  
+
 })
