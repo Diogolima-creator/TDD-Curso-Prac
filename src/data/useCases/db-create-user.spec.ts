@@ -1,13 +1,12 @@
 import { DbCreateUser } from '@/data/useCases'
 import { mockloadUser, throwError } from '@/domain'
-import { CheckUserExistsRepositorySpy  } from '@/data/tests'
+import { CheckUserExistsRepositorySpy, HasherSpy  } from '@/data/tests'
 
 type SutTypes  ={
   sut: DbCreateUser
-  loadUserByEmailRepositorySpy: LoadUserByEmailRepositorySpy
-  hashComparerSpy: HashComparerSpy
-  encrypterSpy: EncrypterSpy
-  updateAccessTokenRepositorySpy: UpdateAccessTokenRepositorySpy
+  CheckUserExistsRepositorySpy: CheckUserExistsRepositorySpy
+  hasher: HasherSpy
+  addUserRepositorySpy: addUserRepositorySpy
 }
 
 const makesut = (): SutTypes => {
