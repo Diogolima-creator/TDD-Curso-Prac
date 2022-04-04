@@ -1,4 +1,5 @@
 import { DbAuthUser } from '@/data/useCases'
+import { mockloadUser } from '@/domain'
 import { LoadUserByEmailRepositorySpy, HashComparerSpy, EncrypterSpy ,UpdateAccessTokenRepositorySpy } from '@/data/tests'
 
 type SutTypes  ={
@@ -30,10 +31,10 @@ const makesut = (): SutTypes => {
 }
 
 describe('DbAuthUser',() => {
- test('Should user auth is successful', () => {
+ test('Should user auth is successful', async () => {
     const { sut, loadUserByEmailRepositorySpy } = makesut()
-    
+    const autheticationParams = mockloadUser()
+    await sut.auth(autheticationParams)
+    expect(loadUserByEmailRepositorySpy.email).toBe(autheticationParams.email)
   })
-
-  
 })
