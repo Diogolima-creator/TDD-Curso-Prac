@@ -1,10 +1,26 @@
-import { loadUser } from "@/domain/useCases/load-user"
-
-export const mockUserAuth = (): loadUser.Params => ({ email:'dbz@gmail.com', password:'123' })
-
-export const mockUserEmailWrong = (): loadUser.Params => ({ email:'dbzz@gmail.com', password:'123' })
-
-export const mockUserPassWrong = (): loadUser.Params => ({ email:'dbz@gmail.com', password:'1234' })
+import { LoadUserByEmailRepository, UpdateAccessTokenRepository } from "@/data/protocols";
 
 
+export class loadUserByEmailSpy implements LoadUserByEmailRepository {
+    email: string
+    result = {
+        id: '1',
+        email: 'dbz@gmail.com',
+        password: '123'
+    }
 
+    async findByEmail (email: string): Promise<LoadUserByEmailRepository.Result> {
+      this.email = email
+      return this.result
+    }
+}
+
+export class UpdateAccessTokenRepositorySpy implements UpdateAccessTokenRepository{
+    id: string
+    token: string
+
+    async updateAccessToken (id: string, token: string): Promise<void> {
+      this.id = id
+      this.token = token
+    }
+}

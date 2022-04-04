@@ -1,9 +1,9 @@
 import { loadUser } from "@/domain/useCases/load-user"
 
 export interface LoadUserByEmailRepository{
-  findByEmail:(data: LoadUserByEmailRepository.Params["email"]) => Promise<LoadUserByEmailRepository.Params>
+  findByEmail:(data: string) => Promise<LoadUserByEmailRepository.Result>
 }
 
 export namespace LoadUserByEmailRepository{
-  export type Params = loadUser.Params
+  export type Result = loadUser.Params
 }

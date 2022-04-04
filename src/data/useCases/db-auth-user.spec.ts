@@ -1,7 +1,17 @@
 import { DbAuthUser } from '@/data/useCases'
-import { mockUserAuth,mockUserEmailWrong, mockUserPassWrong } from '@/data/tests'
+import { loadUserByEmailSpy, HashComparerSpy, EncrypterSpy ,UpdateAccessTokenRepositorySpy } from '@/data/tests'
 
+type SutTypes  ={
+  sut: DbAuthUser
+  loadUserByEmailSpy: loadUserByEmailSpy
+  HashComparerSpy: HashComparerSpy
+  EncrypterSpy: EncrypterSpy
+  UpdateAccessTokenRepositorySpy: UpdateAccessTokenRepositorySpy
+}
 
+const makesut = (): SutTypes => {
+  
+}
 describe('DbAuthUser',() => {
  test('Should user auth is successful', () => {
     const sut = new DbAuthUser()
