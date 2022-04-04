@@ -1,4 +1,4 @@
-import { LoadUserByEmailRepository, UpdateAccessTokenRepository } from "@/data/protocols";
+import { LoadUserByEmailRepository, CheckUserExistsRepository, UpdateAccessTokenRepository } from "@/data/protocols";
 
 
 export class LoadUserByEmailRepositorySpy implements LoadUserByEmailRepository {
@@ -24,3 +24,14 @@ export class UpdateAccessTokenRepositorySpy implements UpdateAccessTokenReposito
       this.token = token
     }
 }
+
+export class CheckUserExistsRepositorySpy implements CheckUserExistsRepository {
+  email: string
+  result = false
+
+  async checkByEmail (email: string): Promise<boolean>{
+    this.email = email
+    return false
+  }
+}
+
