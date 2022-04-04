@@ -67,5 +67,11 @@ describe('DbAuthUser',() => {
     expect(promise).toBeNull
   })
 
+  test('Should throw if hashComparerSpy throws', async () => {
+    const { sut, hashComparerSpy } = makesut()
+    jest.spyOn(hashComparerSpy, 'compare').mockImplementationOnce(throwError)
+    const promise = sut.auth(mockloadUser())
+    await expect(promise).rejects.toThrow()
+  })
 
 })
