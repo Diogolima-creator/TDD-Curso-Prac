@@ -1,6 +1,6 @@
 import { DbAuthUser } from '@/data/useCases'
-import { mockloadUser } from '@/domain'
-import { LoadUserByEmailRepositorySpy, HashComparerSpy, EncrypterSpy ,UpdateAccessTokenRepositorySpy } from '@/data/tests'
+import { mockloadUser, throwError } from '@/domain'
+import { LoadUserByEmailRepositorySpy, HashComparerSpy, EncrypterSpy ,UpdateAccessTokenRepositorySpy  } from '@/data/tests'
 
 type SutTypes  ={
   sut: DbAuthUser
@@ -31,13 +31,20 @@ const makesut = (): SutTypes => {
 }
 
 describe('DbAuthUser',() => {
- test('Should return param email if user auth is successful', async () => {
+ test('Should return params email if user auth is successful', async () => {
     const { sut, loadUserByEmailRepositorySpy } = makesut()
     const autheticationParams = mockloadUser()
     await sut.auth(autheticationParams)
     expect(loadUserByEmailRepositorySpy.email).toBe(autheticationParams.email)
   })
 
+  test('Should throw if loadUserByEmail throws', async () => {
+    const { sut, loadUserByEmailRepositorySpy } = makesut()
+    jest.spyOn(loadUserByEmailRepositorySpy, 'findByEmail').mockImplementationOnce(throwError)
+    const promise = sut.auth(mockloadUser())
+    await expect(promise).rejects.toThrow()
+  })
+  
   test('Should return null if user is not found', async () => {
     const { sut, loadUserByEmailRepositorySpy } = makesut()
     loadUserByEmailRepositorySpy.result = null
