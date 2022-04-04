@@ -1,7 +1,7 @@
 import { LoadUserByEmailRepository, UpdateAccessTokenRepository } from "@/data/protocols";
 
 
-export class loadUserByEmailSpy implements LoadUserByEmailRepository {
+export class LoadUserByEmailRepositorySpy implements LoadUserByEmailRepository {
     email: string
     result = {
         id: '1',
