@@ -1,4 +1,3 @@
-import { UserModel } from "@/domain/models";
 import { loadUser } from "@/domain/useCases/load-user";
 import { LoadUserByEmailRepository, HashComparer, Encrypter, UpdateAccessTokenRepository } from "@/data/protocols";
 
