@@ -31,7 +31,7 @@ export class CheckUserExistsRepositorySpy implements CheckUserExistsRepository {
 
   async checkByEmail (email: string): Promise<boolean>{
     this.email = email
-    return false
+    return this.result
   }
 }
 

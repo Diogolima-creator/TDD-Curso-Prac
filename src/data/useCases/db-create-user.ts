@@ -1,19 +1,19 @@
 import { addUser } from "@/domain/useCases/add-user";
-import { CheckUserExistsRepository, Hasher, addUserRepository } from "@/data/protocols";
+import { CheckUserExistsRepository, Hasher, AddUserRepository } from "@/data/protocols";
 
 export class DbCreateUser implements addUser{
   constructor(
     private readonly checkUserExistsRepository: CheckUserExistsRepository,
     private readonly hasher: Hasher,
-    private readonly addUserRepository: addUserRepository
+    private readonly addUserRepository: AddUserRepository
   ){}
 
   async add(userDate: addUser.Params): Promise<addUser.Result> {
-   const exist = this.checkUserExistsRepository.checkByEmail(userDate.email)
+   const exists = this.checkUserExistsRepository.checkByEmail(userDate.email)
    let isValid = false
-   if(!exist){
+   if(await exists === false){
     const hashedPassword = await this.hasher.hash(userDate.password)
-    isValid = await this.addUserRepository.add({ ...userDate, password:hashedPassword})
+    isValid = await this.addUserRepository.add({ ...userDate, password: hashedPassword})
    }
    return isValid
   }
