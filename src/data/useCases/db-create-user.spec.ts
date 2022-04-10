@@ -40,4 +40,14 @@ describe('DbCreateUser',() => {
     await sut.add(addUserParams)
     expect(hasherSpy.plaintext).toBe(addUserParams.password)
   })
+
+  test('Should call addUserRepository with correct params', async () => {
+    const { sut, addUserRepositorySpy, hasherSpy } = makesut()
+    const addUserParams = mockUser()
+    await sut.add(addUserParams)
+    expect(addUserRepositorySpy.params).toEqual({
+        email: addUserParams.email,
+        password: hasherSpy.digest
+    })
+  })
 })
