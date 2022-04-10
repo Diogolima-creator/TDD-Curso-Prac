@@ -1,0 +1,1 @@
+import { Encrypter, Decrypter } from "@/data/protocols"
