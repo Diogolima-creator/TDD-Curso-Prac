@@ -1,4 +1,4 @@
-import { HashComparer, Encrypter, Hasher } from "../protocols";
+import { HashComparer, Encrypter, Hasher } from "@/data/protocols";
 
 /*    
 private readonly updateAccessTokenRepository: UpdateAccessTokenRepository */

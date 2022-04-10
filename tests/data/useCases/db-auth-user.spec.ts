@@ -1,6 +1,6 @@
 import { DbAuthUser } from '@/data/useCases'
-import { mockUser, throwError } from '@/domain'
-import { LoadUserByEmailRepositorySpy, HashComparerSpy, EncrypterSpy ,UpdateAccessTokenRepositorySpy  } from '@/data/tests'
+import { mockUser, throwError } from '@/tests/domain/mocks'
+import { LoadUserByEmailRepositorySpy, HashComparerSpy, EncrypterSpy ,UpdateAccessTokenRepositorySpy  } from '@/tests/data/mocks'
 
 type SutTypes  ={
   sut: DbAuthUser

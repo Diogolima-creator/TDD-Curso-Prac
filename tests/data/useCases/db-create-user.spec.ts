@@ -1,6 +1,6 @@
 import { DbCreateUser } from '@/data/useCases'
-import { mockUser, throwError } from '@/domain'
-import { CheckUserExistsRepositorySpy, HasherSpy, AddUserRepositorySpy  } from '@/data/tests'
+import { mockUser, throwError } from '@/tests/domain/mocks'
+import { CheckUserExistsRepositorySpy, HasherSpy, AddUserRepositorySpy  } from '@/tests/data/mocks'
 
 type SutTypes  ={
   sut: DbCreateUser
