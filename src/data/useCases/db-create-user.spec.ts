@@ -57,4 +57,10 @@ describe('DbCreateUser',() => {
     const promise = sut.add(mockUser())
     await expect(promise).rejects.toThrow()
   })
+
+  test('Should return true on success', async () => {
+    const { sut } = makesut()
+    const isValid = await sut.add(mockUser())
+    expect(isValid).toBe(true)
+  })
 })
