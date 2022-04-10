@@ -63,4 +63,11 @@ describe('DbCreateUser',() => {
     const isValid = await sut.add(mockUser())
     expect(isValid).toBe(true)
   })
+
+  test('Should return false if CheckAccountByEmailRepository returns true', async () => {
+    const { sut, checkUserExistsRepositorySpy } = makesut()
+    checkUserExistsRepositorySpy.result = false
+    const isValid = await sut.add(mockUser())
+    expect(isValid).toBe(true)
+  })
 })
