@@ -70,4 +70,11 @@ describe('DbCreateUser',() => {
     const isValid = await sut.add(mockUser())
     expect(isValid).toBe(true)
   })
+
+  test('Should call LoadAccountByEmailRepository with correct email', async () => {
+    const { sut, checkUserExistsRepositorySpy } = makesut()
+    const addUserParams = mockUser()
+    await sut.add(addUserParams)
+    expect(checkUserExistsRepositorySpy.email).toBe(addUserParams.email)
+  })
 })
