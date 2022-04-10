@@ -50,4 +50,11 @@ describe('DbCreateUser',() => {
         password: hasherSpy.digest
     })
   })
+
+  test('Should throw if addUserRepositorySpy throws', async () => {
+    const { sut,addUserRepositorySpy } = makesut()
+    jest.spyOn(addUserRepositorySpy, 'add').mockImplementationOnce(throwError)
+    const promise = sut.add(mockUser())
+    await expect(promise).rejects.toThrow()
+  })
 })
