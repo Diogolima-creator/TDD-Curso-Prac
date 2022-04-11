@@ -20,14 +20,21 @@ const makeSut = ():JwtAdapter => {
 describe('Jwt Adapter',() => {
   test('Should call sign with correct values', async () => {
     const sut = makeSut()
-    const hashSpy = jest.spyOn(jwt, 'sign')
+    const jwtSpy = jest.spyOn(jwt, 'sign')
     await sut.encrypt('any_id')
-    expect(hashSpy).toHaveBeenCalledWith({id: 'any_id'}, 'secret')
+    expect(jwtSpy).toHaveBeenCalledWith({id: 'any_id'}, 'secret')
   })
 
   test('Should return a token on sign success', async () => {
     const sut = makeSut()
-    const promise = await sut.encrypt('any_token')
+    const promise = await sut.encrypt('any_id')
     expect(promise).toBe('any_token')
+  })
+
+  test('Should throw if sign throws', async () => {
+    const sut = makeSut()
+    jest.spyOn(jwt, 'sign').mockImplementationOnce(throwError)
+    const promise = sut.encrypt('any_id')
+    await expect(promise).rejects.toThrow()
   })
 })
