@@ -1,4 +1,3 @@
-import { loadUser } from "@/domain"
 
 export interface CheckUserExistsRepository {
     checkByEmail:(data:string) => Promise<CheckUserExistsRepository.Result>
