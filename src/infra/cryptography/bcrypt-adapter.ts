@@ -8,8 +8,8 @@ export class BcryptAdapter implements Hasher, HashComparer{
       return bcrypt.hash(plaintext, this.salt)
    }
 
-   async compare(plaitext: string, digest: string):Promise<boolean>{
-      return bcrypt.compare(plaitext, digest)
+   async compare(plaintext: string, digest: string):Promise<boolean>{
+      return bcrypt.compare(plaintext, digest)
    }
 
 }
