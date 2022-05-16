@@ -3,9 +3,9 @@ import { CheckUserExistsRepository, Hasher, AddUserRepository } from "@/data/pro
 
 export class DbCreateUser implements addUser{
   constructor(
-    private readonly checkUserExistsRepository: CheckUserExistsRepository,
     private readonly hasher: Hasher,
-    private readonly addUserRepository: AddUserRepository
+    private readonly addUserRepository: AddUserRepository,
+    private readonly checkUserExistsRepository: CheckUserExistsRepository,
   ){}
 
   async add(userDate: addUser.Params): Promise<addUser.Result> {
