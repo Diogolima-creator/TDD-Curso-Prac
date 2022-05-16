@@ -1,7 +1,7 @@
-import { AccountMongoRepository, MongoHelper } from '@/infra/db'
+import { AccountMongoRepository } from '@/infra/db'
 import { mockUser } from '@/tests/domain/mocks'
-
 import { Collection } from 'mongodb'
+
 
 const makeSut = (): AccountMongoRepository => {
   return new AccountMongoRepository()
@@ -10,18 +10,7 @@ const makeSut = (): AccountMongoRepository => {
 let accountCollection: Collection
 
 describe('AccountMongoRepository', () => {
-  beforeAll(async() => {
-    await MongoHelper.connect('mongodb://localhost/lojavirtual')
-  })
-
-  afterAll(async() => {
-    await MongoHelper.disconnect()
-  })
-
-  beforeEach(async() => {
-    accountCollection = MongoHelper.getCollection('users')
-  })
-
+ 
   describe('add()',() => {
    test('Should return an account on sucess', async () => {
       const sut = makeSut()
@@ -30,6 +19,17 @@ describe('AccountMongoRepository', () => {
       expect(isValid).toBe(true)
     })
   })
+
+  describe('findByEmail()',() => {
+    test('Should return an account on sucess', async () => {
+       const sut = makeSut()
+       const addAccountParams = mockUser()
+       const account = await sut.findByEmail(addAccountParams.email)
+       expect(account).toBeTruthy()
+       expect(account.id).toBeTruthy()
+       expect(account.password).toBe(addAccountParams.password)
+     })
+   })
   
 })
 
