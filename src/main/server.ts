@@ -1,6 +1,7 @@
-import { MongoHelper } from "@/infra/db";
+import 'module-alias/register'
+import { MongoHelper } from "@/infra/db"
 
-MongoHelper.connect('mongodb://localhost:27017/cursoLogin')
+MongoHelper.connect('mongodb://127.0.0.1:27017/cursoLogin')
     .then(
       async() => {
         const { setupApp } = await import('./config/app')
