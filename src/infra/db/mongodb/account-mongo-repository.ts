@@ -24,6 +24,20 @@ export class AccountMongoRepository implements AddUserRepository, CheckUserExist
     return account && MongoHelper.map(account)
   }
 
+  async checkByUser (username:string): Promise<CheckUserExistsRepository.Result>{
+    const accountCollection = MongoHelper.getCollection('users')
+
+    const account = await accountCollection.findOne({
+      username
+    }, {
+      projection:{
+        _id: 1
+      }
+    })
+
+    return account !== null
+  }
+
   async checkByEmail (email: string): Promise<CheckUserExistsRepository.Result> {
     const accountCollection = MongoHelper.getCollection('users')
     const account = await accountCollection.findOne({

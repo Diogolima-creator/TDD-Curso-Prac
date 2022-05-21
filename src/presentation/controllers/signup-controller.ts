@@ -1,6 +1,6 @@
 import { Controller, HttpResponse, Validation } from '@/presentation'
 import { badRequest, serverError, ok, forbidden } from '@/presentation/helpers'
-import { EmailInUseError } from '@/presentation/errors'
+import { EmailOrUserNameInUseError } from '@/presentation/errors'
 import { addUser, loadUser } from '@/domain'
 
 export class SignUpController implements Controller {
@@ -16,13 +16,20 @@ export class SignUpController implements Controller {
       if (error){
         return badRequest(error)
       }
-      const { email, password } = request
+      const { email, password, username } = request
       const isValid = await this.addUser.add({
         email,
-        password
+        password,
+        username,
+        description: '',
+        profilePic: '',
+        level: '',
+        classes: ['1.JSTutorial','Statements','9fhKtle7Ivg'],
+        LastClasses: [0,-1],
+        createdAt: new Date(Date.now()).toDateString()
       })
       if (!isValid){
-        return forbidden(new EmailInUseError())
+        return forbidden(new EmailOrUserNameInUseError())
       }
       const authenticationModel = await this.authentication.auth({
         email,
@@ -37,6 +44,7 @@ export class SignUpController implements Controller {
 
 export namespace SignUpController{
   export type Request = {
+    username: string
     email: string
     password: string
     passwordConfirmation: string
