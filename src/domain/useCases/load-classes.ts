@@ -1,10 +1,10 @@
 import { ClassModel } from "../models"
 
-export interface loadClass {
-  load?: (classDate: ClassModel) => Promise<loadClass.Result>
+export interface LoadClass {
+  load?: (classDate: string) => Promise<LoadClass.Result>
 }
 
-export namespace loadClass{
+export namespace LoadClass{
   export type Params = ClassModel
   export type Result = ClassModel
 }
