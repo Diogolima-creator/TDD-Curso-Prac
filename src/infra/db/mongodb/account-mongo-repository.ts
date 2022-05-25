@@ -1,8 +1,8 @@
 import { MongoHelper } from "@/infra/db"
-import { AddUserRepository, CheckUserExistsRepository, CreateUserRepository, LoadUserByEmailRepository, UpdateAccessTokenRepository } from '@/data/protocols'
+import { AddUserRepository, CheckUserExistsRepository, CreateUserRepository, LoadUserByEmailRepository, UpdateAccessTokenRepository, LoadAccountByTokenRepository } from '@/data/protocols'
 
 
-export class AccountMongoRepository implements AddUserRepository, CheckUserExistsRepository , CreateUserRepository, LoadUserByEmailRepository , UpdateAccessTokenRepository {
+export class AccountMongoRepository implements AddUserRepository, CheckUserExistsRepository , CreateUserRepository, LoadUserByEmailRepository , UpdateAccessTokenRepository, LoadAccountByTokenRepository {
 
   async add(data: AddUserRepository.Params): Promise<AddUserRepository.Result> {
     const accountCollection = MongoHelper.getCollection('users')
@@ -59,5 +59,22 @@ export class AccountMongoRepository implements AddUserRepository, CheckUserExist
         accessToken: token
       }
     })
+  }
+
+  async loadByToken (token: string, role?: string): Promise<LoadAccountByTokenRepository.Result> {
+    const accountCollection = MongoHelper.getCollection('users')
+    const account = await accountCollection.findOne({
+      accessToken: token,
+      $or: [{
+        role
+      }, {
+        role: 'admin'
+      }]
+    }, {
+      projection: {
+        _id: 1
+      }
+    })
+    return account && MongoHelper.map(account)
   }
 }
