@@ -17,7 +17,7 @@ export class AccountMongoRepository implements AddUserRepository, CheckUserExist
     },{
       projection:{
         _id: 1,
-        name: 1,
+        username: 1,
         password: 1
       }
     })
