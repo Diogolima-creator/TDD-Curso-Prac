@@ -52,6 +52,7 @@ export class AccountMongoRepository implements AddUserRepository, CheckUserExist
 
   async updateAccessToken (id: string, token: string): Promise<void> {
     const accountCollection = MongoHelper.getCollection('users')
+
     await accountCollection.updateOne({
       _id: id
     }, {

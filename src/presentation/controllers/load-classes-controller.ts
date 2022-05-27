@@ -7,7 +7,7 @@ export class LoadClassesController implements Controller {
 
   async handle (request: LoadClassesController.Request): Promise<HttpResponse> {
     try{
-      const classes = await this.loadClass.load(request.accountId)
+      const classes = await this.loadClass.load(request.type)
       return classes.Modules ? ok(classes) : noContent()
     }catch(error){
       return serverError(error)
@@ -17,6 +17,6 @@ export class LoadClassesController implements Controller {
 
 export namespace LoadClassesController {
   export type Request = {
-    accountId: string
+    type: string
   }
 }

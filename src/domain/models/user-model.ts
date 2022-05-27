@@ -6,6 +6,7 @@ export interface UserModel {
     profilePic?: string
     level?: string
     description?: string
+    accessToken?: string
     classes?: [string, string, string]
     LastClasses?: [number, number],
     createdAt?: string
