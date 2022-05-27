@@ -1,5 +1,6 @@
 import { MongoHelper } from "@/infra/db"
 import { AddUserRepository, CheckUserExistsRepository, CreateUserRepository, LoadUserByEmailRepository, UpdateAccessTokenRepository, LoadAccountByTokenRepository } from '@/data/protocols'
+import { ObjectId } from "mongodb"
 
 
 export class AccountMongoRepository implements AddUserRepository, CheckUserExistsRepository , CreateUserRepository, LoadUserByEmailRepository , UpdateAccessTokenRepository, LoadAccountByTokenRepository {
@@ -52,14 +53,14 @@ export class AccountMongoRepository implements AddUserRepository, CheckUserExist
 
   async updateAccessToken (id: string, token: string): Promise<void> {
     const accountCollection = MongoHelper.getCollection('users')
-
     await accountCollection.updateOne({
-      _id: id
+      _id: new ObjectId(id)
     }, {
       $set: {
         accessToken: token
       }
     })
+
   }
 
   async loadByToken (token: string, role?: string): Promise<LoadAccountByTokenRepository.Result> {
