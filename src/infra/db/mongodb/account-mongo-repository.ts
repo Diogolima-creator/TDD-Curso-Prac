@@ -11,6 +11,42 @@ export class AccountMongoRepository implements AddUserRepository, CheckUserExist
     return result.insertedId !== null 
   }
 
+  async updateProfile (id: string, description: string, profilePic: string): Promise<void> {
+    const accountCollection = MongoHelper.getCollection('users')
+    await accountCollection.updateOne({
+      _id: new ObjectId(id)
+    }, {
+      $set: {
+        description,
+        profilePic
+      }
+    })
+  }
+
+  async updateClass (id: string, Module: string, Class: string, urlVideo: string): Promise<void> {
+    const accountCollection = MongoHelper.getCollection('users')
+    await accountCollection.updateOne({
+      _id: new ObjectId(id)
+    }, {
+      $set: {
+        classes: [Module,Class,urlVideo]
+      }
+    })
+
+  }
+
+  async updateLastClass (id: string, posLastModule: string, posLastClass:string ): Promise<void> {
+    const accountCollection = MongoHelper.getCollection('users')
+    await accountCollection.updateOne({
+      _id: new ObjectId(id)
+    }, {
+      $set: {
+        LastClasses:[posLastModule,posLastClass]
+      }
+    })
+
+  }
+
   async findByEmail (email:string): Promise<LoadUserByEmailRepository.Result> {
     const accountCollection = MongoHelper.getCollection('users')
     const account = await accountCollection.findOne({
