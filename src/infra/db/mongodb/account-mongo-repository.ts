@@ -1,9 +1,9 @@
 import { MongoHelper } from "@/infra/db"
-import { AddUserRepository, CheckUserExistsRepository, CreateUserRepository, LoadUserByEmailRepository, UpdateAccessTokenRepository, LoadAccountByTokenRepository } from '@/data/protocols'
+import { AddUserRepository, CheckUserExistsRepository, CreateUserRepository, LoadUserByEmailRepository, UpdateAccessTokenRepository, LoadAccountByTokenRepository, UpdateClassUserRepository, UpdateLastClassUserRepository, UpdateProfileRepository  } from '@/data/protocols'
 import { ObjectId } from "mongodb"
 
 
-export class AccountMongoRepository implements AddUserRepository, CheckUserExistsRepository , CreateUserRepository, LoadUserByEmailRepository , UpdateAccessTokenRepository, LoadAccountByTokenRepository {
+export class AccountMongoRepository implements AddUserRepository, CheckUserExistsRepository , CreateUserRepository, LoadUserByEmailRepository , UpdateAccessTokenRepository, LoadAccountByTokenRepository, UpdateClassUserRepository, UpdateLastClassUserRepository, UpdateProfileRepository {
 
   async add(data: AddUserRepository.Params): Promise<AddUserRepository.Result> {
     const accountCollection = MongoHelper.getCollection('users')
@@ -35,7 +35,7 @@ export class AccountMongoRepository implements AddUserRepository, CheckUserExist
 
   }
 
-  async updateLastClass (id: string, posLastModule: string, posLastClass:string ): Promise<void> {
+  async updateLastClass (id: string, posLastModule: number, posLastClass:number ): Promise<void> {
     const accountCollection = MongoHelper.getCollection('users')
     await accountCollection.updateOne({
       _id: new ObjectId(id)
