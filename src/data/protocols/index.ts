@@ -1,6 +1,6 @@
 export * from './db/account/create-user-repository'
 export * from './db/account/load-user-by-email-repository'
-export * from './db/account/update-acess-token.repository'
+export * from './db/account/update-acess-token-repository'
 export * from './db/account/check-user-exists-repository'
 export * from './db/account/load-account-by-token-repository'
 export * from './db/account/add-user-repository'

@@ -1,3 +1,3 @@
-export interface UpdateClassUserRepository {
-  updateProfile: (id: string, token: string) => Promise<void>
+export interface UpdateUserRepository {
+  updateProfile: (id: string, description: string, profilePic: string) => Promise<void>
 }
