@@ -1,3 +1,3 @@
 export interface UpdateLastClassUserRepository {
-  updateLastClass: (id: string, posLastModule: string, posLastClass:string ) => Promise<void>
+  updateLastClass: (id: string, posLastModule: number, posLastClass:number ) => Promise<void>
 }
