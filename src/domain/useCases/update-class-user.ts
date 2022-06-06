@@ -1,9 +1,9 @@
 import { UserModel } from "../models"
 
-export interface updateClassUser {
+export interface UpdateClassUser {
     update: (userDate: UserModel) => Promise<void>
 }
 
-export namespace updateClassUser{
+export namespace UpdateClassUser{
     export type Params = UserModel   
 }

@@ -1,9 +1,9 @@
-import { updateClassUser } from "@/domain/useCases/update-class-user"
+import { UpdateClassUser } from "@/domain/useCases/update-class-user"
 import { UpdateClassUserRepository } from "@/data/protocols"
 import { UserModel } from "@/domain/models"
 
 
-export class DbUpdateClassUser implements updateClassUser {
+export class DbUpdateClassUser implements UpdateClassUser {
   constructor(private readonly updateClassUserRepository: UpdateClassUserRepository){}
 
   async update (updateDate: UserModel): Promise<void> {
