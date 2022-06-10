@@ -1,4 +1,4 @@
-import { HashComparer, Encrypter, Hasher } from "@/data/protocols";
+import { HashComparer, Encrypter, Hasher, Decrypter } from "@/data/protocols";
 
 /*    
 private readonly updateAccessTokenRepository: UpdateAccessTokenRepository */
@@ -16,7 +16,7 @@ export class HashComparerSpy implements HashComparer {
 }
 
 export class EncrypterSpy implements Encrypter {
-  ciphertext = '1'
+  ciphertext = 'uuid'
   plaintext: string
 
   async encrypt (plaintext: string): Promise<string> {
@@ -26,11 +26,21 @@ export class EncrypterSpy implements Encrypter {
 }
 
 export class HasherSpy implements Hasher {
-  digest = '1'
+  digest = 'password'
   plaintext: string
 
   async hash (plaintext: string): Promise<string> {
     this.plaintext = plaintext
     return this.digest
+  }
+}
+
+export class DecrypterSpy implements Decrypter {
+  plaintext = 'password'
+  ciphertext: string
+
+  async decrypt (ciphertext: string): Promise<string> {
+    this.ciphertext = ciphertext
+    return this.plaintext
   }
 }
