@@ -27,10 +27,16 @@ export class UpdateAccessTokenRepositorySpy implements UpdateAccessTokenReposito
 
 export class CheckUserExistsRepositorySpy implements CheckUserExistsRepository {
   email: string
+  id: string
   result = false
 
   async checkByEmail (email: string): Promise<boolean>{
     this.email = email
+    return this.result
+  }
+
+  async checkByUser (id: string): Promise<boolean>{
+    this.id = id
     return this.result
   }
 }

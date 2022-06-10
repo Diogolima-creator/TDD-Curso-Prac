@@ -14,9 +14,9 @@ const makeSut = (): SutTypes => {
   const hasherSpy = new HasherSpy()
   const addUserRepositorySpy = new AddUserRepositorySpy()
   const sut = new DbCreateUser(
-    checkUserExistsRepositorySpy,
     hasherSpy,
     addUserRepositorySpy,
+    checkUserExistsRepositorySpy
   )
   return {
     sut,
