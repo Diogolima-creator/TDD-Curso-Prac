@@ -1,4 +1,4 @@
-import { loadUser } from "../useCases/load-user"
+import { loadUser } from "@/domain/useCases/load-user"
 
 export const mockUser = (): loadUser.Params => ({
   email: 'dbz@gmail.com',
