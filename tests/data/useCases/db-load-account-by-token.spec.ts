@@ -24,5 +24,14 @@ let token: string
 let role : string 
 
 describe('DbLoadAccountToken UseCase', () => {
-  
+    beforeEach(() => {
+      token = '123'
+      role = 'admin'
+    })
+
+    test('Should call Decrypter with correct ciphertext', async () => {
+      const { sut, decrypterSpy } = makeSut()
+      await sut.load(token, role)
+      expect(decrypterSpy.ciphertext).toBe(token)
+    })
 })
