@@ -1,6 +1,6 @@
 import { DbLoadClass } from "@/data/useCases"
 import { LoadClassByTypeRepositorySpy } from "@/tests/data/mocks"
-import { mockUser, throwError } from "@/tests/domain/mocks"
+import { throwError } from "@/tests/domain/mocks"
 
 type SutTypes = {
   sut: DbLoadClass,
