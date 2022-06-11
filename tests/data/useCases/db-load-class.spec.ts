@@ -18,6 +18,17 @@ const makeSut = ():SutTypes => {
     sut,
     loadClassByTypeRepositorySpy
   }
-
-  
 }
+
+describe('DbLoadClass useCases', () => {
+
+    test('Should call LoadClassByTypeRepository', async () => {
+      const { sut, loadClassByTypeRepositorySpy } = makeSut()
+      const classType = 'JavaScript'
+      await sut.load(classType)
+      expect(loadClassByTypeRepositorySpy.data).toBe(classType)
+    })
+    
+})
+
+ 
