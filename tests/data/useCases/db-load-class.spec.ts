@@ -29,10 +29,17 @@ describe('DbLoadClass useCases', () => {
       expect(loadClassByTypeRepositorySpy.data).toBe(classType)
     })
     
-    test('Should return a list of Classes on sucess', async () => {
+    test('Should return a list of Classes on success', async () => {
       const { sut, loadClassByTypeRepositorySpy } = makeSut()
       const classes = await sut.load('JavaScript')
       expect(classes).toEqual(loadClassByTypeRepositorySpy.result)
+    })
+
+    test('Should throw if LoadClassByTypeRepository', async() => {
+      const { sut, loadClassByTypeRepositorySpy } = makeSut()
+      jest.spyOn(loadClassByTypeRepositorySpy, 'findByType').mockImplementationOnce(throwError)
+      const promise = sut.load('JavaScript')
+      await expect(promise).rejects.toThrow()
     })
 })
 
