@@ -29,6 +29,11 @@ describe('DbLoadClass useCases', () => {
       expect(loadClassByTypeRepositorySpy.data).toBe(classType)
     })
     
+    test('Should return a list of Classes on sucess', async () => {
+      const { sut, loadClassByTypeRepositorySpy } = makeSut()
+      const classes = await sut.load('JavaScript')
+      expect(classes).toEqual(loadClassByTypeRepositorySpy.result)
+    })
 })
 
  
