@@ -1,4 +1,4 @@
-import { LoadUserByEmailRepository, CheckUserExistsRepository, UpdateAccessTokenRepository, AddUserRepository, LoadAccountByTokenRepository } from "@/data/protocols";
+import { LoadUserByEmailRepository, CheckUserExistsRepository, UpdateAccessTokenRepository, AddUserRepository, LoadAccountByTokenRepository, UpdateClassUserRepository } from "@/data/protocols";
 
 
 export class LoadUserByEmailRepositorySpy implements LoadUserByEmailRepository {
@@ -61,6 +61,20 @@ export class LoadAccountByTokenRepositorySpy implements LoadAccountByTokenReposi
     this.token = token 
     this.role = role 
     return this.result
+  }
+}
+
+export class UpdateClassUserRepositorySpy implements UpdateClassUserRepository {
+  id:string
+  Module: string
+  Class: string
+  urlVideo: string
+  
+  async updateClass (id: string, Module: string, Class: string, urlVideo: string): Promise<void>{
+    this.id = id
+    this.Module = Module
+    this.Class = Class
+    this.urlVideo = urlVideo
   }
 }
 
