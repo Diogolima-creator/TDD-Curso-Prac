@@ -1,4 +1,4 @@
-import { LoadUserByEmailRepository, CheckUserExistsRepository, UpdateAccessTokenRepository, AddUserRepository, LoadAccountByTokenRepository, UpdateClassUserRepository } from "@/data/protocols";
+import { LoadUserByEmailRepository, CheckUserExistsRepository, UpdateAccessTokenRepository, AddUserRepository, LoadAccountByTokenRepository, UpdateClassUserRepository, UpdateProfileRepository } from "@/data/protocols";
 
 
 export class LoadUserByEmailRepositorySpy implements LoadUserByEmailRepository {
@@ -75,6 +75,18 @@ export class UpdateClassUserRepositorySpy implements UpdateClassUserRepository {
     this.Module = Module
     this.Class = Class
     this.urlVideo = urlVideo
+  }
+}
+
+export class UpdateProfileRepositorySpy implements UpdateProfileRepository {
+  id:string
+  description: string 
+  profilePic: string
+
+  async updateProfile (id: string, description: string, profilePic: string): Promise<void>{
+      this.id = id 
+      this.description = description 
+      this.profilePic = profilePic
   }
 }
 
