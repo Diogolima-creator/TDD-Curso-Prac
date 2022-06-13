@@ -29,4 +29,11 @@ describe('DbUpdateLastClassUser useCase', () => {
     expect(updateLastClassUserRepositorySpy.posLastModule).toBe(1)
     expect(updateLastClassUserRepositorySpy.posLastClass).toBe(2)
   })
+
+  test('Should throw if updateLastClassUserRepository throws', async () => {
+    const { sut, updateLastClassUserRepositorySpy } = makeSut()
+    jest.spyOn(updateLastClassUserRepositorySpy, 'updateLastClass').mockImplementationOnce(throwError)
+    const promise = sut.update({id:'id', LastClasses: [1,2]})
+    await expect(promise).rejects.toThrow()
+  })
 })
