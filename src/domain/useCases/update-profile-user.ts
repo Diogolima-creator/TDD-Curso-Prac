@@ -1,10 +1,12 @@
-import { UserModel } from "../models"
 
 export interface UpdateProfile {
-    update: (userDate: UserModel) => Promise<void>
+    update: (userDate: UpdateProfile.Params) => Promise<void>
 }
 
 export namespace UpdateProfile{
-    export type Params = UserModel
-    
+    export type Params = {
+        id: string,
+        description: string,
+        profilePic: string
+    }   
 }
