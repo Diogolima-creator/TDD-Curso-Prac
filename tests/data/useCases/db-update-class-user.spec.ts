@@ -31,4 +31,10 @@ describe('DbUpdateClassUser useCase', () => {
     expect(updateClassUserRepositorySpy.urlVideo).toBe('urlVideo')
   })
 
+  test('Should throw if UpdateClassUserRepository throws', async () => {
+    const { sut, updateClassUserRepositorySpy } = makeSut()
+    jest.spyOn(updateClassUserRepositorySpy, 'updateClass').mockImplementationOnce(throwError)
+      const promise = sut.update({id:'id', classes:['Module','Class','urlVideo']})
+      await expect(promise).rejects.toThrow()
+  })
 })
