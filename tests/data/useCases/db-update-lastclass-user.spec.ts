@@ -19,3 +19,14 @@ const makeSut = (): SutTypes => {
     updateLastClassUserRepositorySpy
   }
 }
+
+describe('DbUpdateLastClassUser useCase', () => {
+
+  test('Should Call DbUpdateLastClassUser', async () => {
+    const { sut, updateLastClassUserRepositorySpy } = makeSut()
+    await sut.update({id:'id', LastClasses: [1,2]})
+    expect(updateLastClassUserRepositorySpy.id).toBe('id')
+    expect(updateLastClassUserRepositorySpy.posLastModule).toBe(1)
+    expect(updateLastClassUserRepositorySpy.posLastClass).toBe(2)
+  })
+})
