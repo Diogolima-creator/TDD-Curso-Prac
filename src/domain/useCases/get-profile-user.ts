@@ -1,15 +1,13 @@
 import { UserModel } from "../models"
 
-export interface GetProfile {
-  update: (userDate: GetProfile.Params) => Promise<void>
+export interface GetProfileUser {
+  get: (userDate: GetProfileUser.Params) => Promise<GetProfileUser.Result>
 }
 
-export namespace GetProfile{
+export namespace GetProfileUser{
   export type Params = {
       id?: string
   }
 
-  export type Result = {
-      profile: UserModel
-  }   
+  export type Result = UserModel 
 }
