@@ -1,12 +1,20 @@
 import { Controller, HttpResponse } from '@/presentation/protocols'
-import { noContent, serverError, ok } from '@/presentation/helpers'
+import { badRequest, noContent, serverError, ok } from '@/presentation/helpers'
 import { GetProfileUser } from '@/domain'
+import { Validation } from '@/presentation/protocols'
 
 export class UserGetProfileController implements Controller {
-  constructor (private readonly getProfileUser: GetProfileUser){}
+  constructor (
+  private readonly getProfileUser: GetProfileUser,
+  private readonly validation: Validation
+  ){}
 
   async handle (request: UserGetProfileController.Request): Promise<HttpResponse> {
     try{
+      const error = this.validation.validate(request)
+      if(error){
+        return badRequest(error)
+      }
       const userProfile = await this.getProfileUser.get(request.id)
       return userProfile.username ? ok(userProfile) : noContent()
     }catch(error){
