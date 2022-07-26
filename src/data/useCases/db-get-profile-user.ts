@@ -5,8 +5,8 @@ import { GetProfileUserRepository } from "../protocols"
 export class DbGetProfileUser implements GetProfileUser {
   constructor(private readonly getProfileUserRepository: GetProfileUserRepository){}
 
-  async get (userDate: GetProfileUser.Params): Promise<GetProfileUser.Result> {
-    return this.getProfileUserRepository.getProfile(userDate.id)
+  async get (userDateID: string): Promise<GetProfileUser.Result> {
+    return this.getProfileUserRepository.getProfile(userDateID)
   }
 }
 

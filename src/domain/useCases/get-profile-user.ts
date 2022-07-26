@@ -1,7 +1,7 @@
 import { UserModel } from "../models"
 
 export interface GetProfileUser {
-  get: (userDate: GetProfileUser.Params) => Promise<GetProfileUser.Result>
+  get: (userDate: string) => Promise<GetProfileUser.Result>
 }
 
 export namespace GetProfileUser{
