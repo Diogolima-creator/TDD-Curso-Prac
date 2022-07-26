@@ -14,7 +14,7 @@ export class DbUpdateClassUser implements UpdateClassUser {
 
 export namespace DbUpdateClassUser {
   export type Params = {
-      id: string,
-      classes: [string, string, string]
+      id?: string,
+      classes?: [string, string, string]
   }
 }

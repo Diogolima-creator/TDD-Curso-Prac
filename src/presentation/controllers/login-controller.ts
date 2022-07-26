@@ -27,6 +27,7 @@ export class LoginController implements Controller {
 
 export namespace LoginController {
   export type Request = {
+    username:string
     email: string
     password: string
   }

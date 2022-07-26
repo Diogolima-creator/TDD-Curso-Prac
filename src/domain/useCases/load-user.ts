@@ -9,6 +9,9 @@ export namespace loadUser{
     
     export type Result = {
         accessToken: string
-        email: string
+        email?: string
+        username?: string
+        status: string
+        _id: string
       }
 }

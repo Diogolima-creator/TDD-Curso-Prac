@@ -1,6 +1,5 @@
 import { UpdateProfile } from "@/domain/useCases/update-profile-user"
 import { UpdateProfileRepository } from "@/data/protocols"
-import { UserModel } from "@/domain/models"
 
 
 export class DbUpdateProfile implements UpdateProfile {

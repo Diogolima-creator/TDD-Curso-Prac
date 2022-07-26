@@ -11,15 +11,17 @@ export class DbAuthUser implements loadUser {
   ){}
 
   async auth(userDate: loadUser.Params): Promise<loadUser.Result>{
-    const account = await this.loadUserByEmail.findByEmail(userDate.email)
-    if(account){
-      const isValid = await this.hashComparer.compare(userDate.password, account.password)
+    const accountByEmail = await this.loadUserByEmail.findByEmail(userDate.email)
+    if(accountByEmail){
+      const isValid = await this.hashComparer.compare(userDate.password, accountByEmail.password)
       if(isValid){
-        const accessToken = await this.encrypter.encrypt(account.id)
-        await this.updateAccessTokenRepository.updateAccessToken(account.id, accessToken)
+        const accessToken = await this.encrypter.encrypt(accountByEmail.id)
+        await this.updateAccessTokenRepository.updateAccessToken(accountByEmail.id, accessToken)
         return{
           accessToken,
-          email: account.email
+          email: accountByEmail.email,
+          status: 'ok',
+          _id: accountByEmail.id
         }
       }
     }

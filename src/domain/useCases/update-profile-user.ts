@@ -5,8 +5,8 @@ export interface UpdateProfile {
 
 export namespace UpdateProfile{
     export type Params = {
-        id: string,
-        description: string,
-        profilePic: string
+        id?: string,
+        description?: string,
+        profilePic?: string
     }   
 }

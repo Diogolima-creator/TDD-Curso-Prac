@@ -13,7 +13,7 @@ export class DbUpdateLastClassUser implements UpdateLastClassUser {
 
 export namespace DbUpdateLastClassUser {
   export type Params = {
-      id: string,
-      LastClasses: [number, number]
+      id?: string,
+      LastClasses?: [number, number]
   }
 }
