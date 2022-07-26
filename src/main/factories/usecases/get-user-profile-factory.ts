@@ -1,6 +1,6 @@
 import { AccountMongoRepository } from "@/infra/db"
 import {  GetProfileUser } from "@/domain"
-import {  DbUpdateClassUser } from "@/data/useCases"
+import {  DbGetProfileUser } from "@/data/useCases"
 
 export const makeDbGetProfileUser = (): GetProfileUser => {
   const accountMongoRepository = new AccountMongoRepository()
