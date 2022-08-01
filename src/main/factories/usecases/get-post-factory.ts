@@ -1,8 +1,8 @@
 import { AccountMongoRepository } from "@/infra/db"
-import {  GetProfileUser } from "@/domain"
-import {  DbGetProfileUser } from "@/data/useCases"
+import {  GetPost } from "@/domain"
+import {  DbGetPost } from "@/data/useCases"
 
-export const makeDbGetPost = (): GetProfileUser => {
+export const makeDbGetPost = (): GetPost => {
   const accountMongoRepository = new AccountMongoRepository()
-  return new DbGetProfileUser(accountMongoRepository)
+  return new DbGetPost(accountMongoRepository)
 }
