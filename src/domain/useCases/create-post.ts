@@ -6,5 +6,5 @@ export interface CreatePost {
 
 export namespace CreatePost{
   export type Params = PostModel
-  export type Result = PostModel
+  export type Result = Boolean
 }
