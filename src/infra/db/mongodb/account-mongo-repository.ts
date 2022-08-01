@@ -1,10 +1,10 @@
 import { MongoHelper } from "@/infra/db"
-import { AddUserRepository, CheckUserExistsRepository, CreateUserRepository, LoadUserByEmailRepository, UpdateAccessTokenRepository, LoadAccountByTokenRepository, UpdateClassUserRepository, UpdateLastClassUserRepository, UpdateProfileRepository, GetProfileUserRepository  } from '@/data/protocols'
+import { AddUserRepository, CheckUserExistsRepository, LoadUserByEmailRepository, UpdateAccessTokenRepository, LoadAccountByTokenRepository, UpdateClassUserRepository, UpdateLastClassUserRepository, UpdateProfileRepository, GetProfileUserRepository  } from '@/data/protocols'
 import { ObjectId } from "mongodb"
 import { UserModel } from "@/domain/models"
 
 
-export class AccountMongoRepository implements AddUserRepository, CheckUserExistsRepository , CreateUserRepository, LoadUserByEmailRepository , UpdateAccessTokenRepository, LoadAccountByTokenRepository, UpdateClassUserRepository, UpdateLastClassUserRepository, UpdateProfileRepository, GetProfileUserRepository {
+export class AccountMongoRepository implements AddUserRepository, CheckUserExistsRepository , LoadUserByEmailRepository , UpdateAccessTokenRepository, LoadAccountByTokenRepository, UpdateClassUserRepository, UpdateLastClassUserRepository, UpdateProfileRepository, GetProfileUserRepository {
 
   async add(data: AddUserRepository.Params): Promise<AddUserRepository.Result> {
     const accountCollection = MongoHelper.getCollection('users')

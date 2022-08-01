@@ -1,6 +1,6 @@
 import { Middleware, HttpResponse } from '@/presentation/protocols'
-import { forbidden, ok, serverError } from '@/presentation/helpers'
-import { AccessDeniedError } from '@/presentation/errors'
+import { forbidden, ok, serverError, unauthorized } from '@/presentation/helpers'
+import { TokenError, TokenInvalidError, TokenMalFormattedError } from '@/presentation/errors'
 import { LoadAccountByToken } from '@/domain'
 
 export class AuthMiddleware implements Middleware {
@@ -12,13 +12,26 @@ export class AuthMiddleware implements Middleware {
   async handle (request: AuthMiddleware.Request): Promise<HttpResponse> {
     try{
       const { accessToken } = request
-      if(accessToken){
-        const account = await this.loadAccountByToken.load(accessToken, this.role)
+
+      const parts = accessToken.split(' ')
+
+      if(parts.length !== 2){
+        return forbidden(new TokenError())
+      }
+
+      const [ scheme, token] = parts;
+
+      if(!/^Bearer$/i.test(scheme)){
+        return forbidden(new TokenMalFormattedError())
+      }
+
+      if(token){
+        const account = await this.loadAccountByToken.load(token, this.role)
         if(account){
           return ok({ accountId: account.id })
         }
       }
-      return forbidden(new AccessDeniedError())
+      return forbidden(new TokenInvalidError())
     } catch(error){
       return serverError(error)
     }

@@ -8,7 +8,7 @@ export class PostGetController implements Controller {
   async handle (): Promise<HttpResponse> {
     try{
       const posts = await this.getPost.getAll()
-      return posts.id ? ok(posts) : noContent()
+      return posts[0].username ? ok(posts) : noContent()
     }catch(error){
       return serverError(error)
     }

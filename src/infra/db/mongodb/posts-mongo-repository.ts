@@ -5,7 +5,8 @@ export class PostsMongoRepository implements CreatePostRepository,GetPostReposit
 
   async getAll(): Promise<GetPostRepository.Result> {
     const postsCollection = MongoHelper.getCollection('posts')
-    return postsCollection && MongoHelper.map(postsCollection)
+    const posts = await postsCollection.find().toArray()
+    return MongoHelper.mapCollection(posts)
   }
 
   async add(data: CreatePostRepository.Params): Promise<CreatePostRepository.Result> {
