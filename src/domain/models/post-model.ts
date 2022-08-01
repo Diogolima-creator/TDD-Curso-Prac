@@ -1,5 +1,5 @@
 export interface PostModel {
-  _id: string
+  id: string
   username: string
   level: string
   profilePic: string
