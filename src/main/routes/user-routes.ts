@@ -1,5 +1,5 @@
 import { adaptRoute } from "@/main/adapters"
-import { makeProfileUpdateController, makeUserLastClassUpdateController, makeUserClassUpdateController } from '@/main/factories'
+import { makeUserGetProfileController,makeProfileUpdateController, makeUserLastClassUpdateController, makeUserClassUpdateController } from '@/main/factories'
 import { auth } from "@/main/middlewares"
 import { Router } from "express"
 

@@ -15,7 +15,7 @@ export class AccountMongoRepository implements AddUserRepository, CheckUserExist
   async getProfile(id:string): Promise<UserModel>{
     const accountCollection = MongoHelper.getCollection('users')
     const user = await accountCollection.findOne({
-      id
+      _id: new ObjectId(id)
     })
     return user && MongoHelper.map(user)
   }
