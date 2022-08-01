@@ -2,7 +2,7 @@ import { Controller, HttpResponse } from '@/presentation/protocols'
 import { serverError, ok } from '@/presentation/helpers'
 import { CreatePost } from '@/domain'
 
-export class CreatePostController implements Controller {
+export class PostCreateController implements Controller {
   constructor(
     private readonly createPost: CreatePost
   ){}

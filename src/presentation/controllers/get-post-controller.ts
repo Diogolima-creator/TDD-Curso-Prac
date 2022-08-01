@@ -2,7 +2,7 @@ import { Controller, HttpResponse } from '@/presentation/protocols'
 import { noContent, serverError, ok } from '@/presentation/helpers'
 import { GetPost } from '@/domain'
 
-export class GetPostController implements Controller {
+export class PostGetController implements Controller {
   constructor (private readonly getPost: GetPost){}
 
   async handle (): Promise<HttpResponse> {
