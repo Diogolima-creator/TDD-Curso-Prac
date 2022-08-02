@@ -22,7 +22,7 @@ export class PostsMongoRepository implements CreatePostRepository,GetPostReposit
     await postsCollection.updateOne({
       _id: new ObjectId(comment.id)
     }, {
-      $set: {
+      $push: {
         Comments:[comment.profilePic,comment.comment, comment.username, comment.level]
       }
     })
@@ -50,7 +50,7 @@ export class PostsMongoRepository implements CreatePostRepository,GetPostReposit
     const postsCollection = MongoHelper.getCollection('posts')
     const post = await postsCollection.findOne({ _id: new ObjectId(likeId.idPost) })
     
-    if((post.Likes.filter((item:string) => item === likeId.idUser)).length !== 0 ){
+    if((post.Likes.filter((item:string) => item === likeId.idUser)).length === 0 ){
       return false
     }
 
