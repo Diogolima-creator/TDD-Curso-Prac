@@ -10,7 +10,7 @@ export class PostAddCommentController implements Controller {
   async handle(request: PostAddCommentController.Request): Promise<HttpResponse>{
     try{
       const addCommentResult = await this.addComment.add(request)
-      return addCommentResult === true ? ok(addCommentResult) : noContent()
+      return ok(addCommentResult)
     } catch(error){
       return serverError(error)
     }

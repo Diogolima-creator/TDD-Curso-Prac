@@ -1,10 +1,10 @@
-import { AddComment } from "@/domain/useCases/create-post";
+import { AddComment } from "@/domain";
 import { AddCommentRepository } from "@/data/protocols";
 
 export class DbAddCommentPost implements AddComment{
   constructor(private readonly addCommentRepository: AddCommentRepository){}
 
-  async add(comment: AddComment.Params): Promise<AddComment.Result> {
-   return this.addCommentRepository.add(comment)
+  async add(comment: AddComment.Params): Promise<void> {
+   return this.addCommentRepository.addComment(comment)
   }
 }

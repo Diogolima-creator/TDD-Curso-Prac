@@ -1,10 +1,9 @@
-import { AddComment } from "@/domain/useCases/create-post"
+import { AddComment } from "@/domain"
 
 export interface AddCommentRepository{
-  add: (comment:AddCommentRepository.Params) => Promise<AddCommentRepository.Result>
+  addComment: (comment:AddCommentRepository.Params) => Promise<void>
 }
 
 export namespace AddCommentRepository{
   export type Params = AddComment.Params
-  export type Result = AddComment.Result
 }

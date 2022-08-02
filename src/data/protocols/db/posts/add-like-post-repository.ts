@@ -1,7 +1,7 @@
-import { AddLike } from "@/domain/useCases/create-post"
+import { AddLike } from "@/domain"
 
 export interface AddLikeRepository{
-  add: (likeId:AddLikeRepository.Params) => Promise<AddLikeRepository.Result>
+  addLike: (likeId:AddLikeRepository.Params) => Promise<AddLikeRepository.Result>
 }
 
 export namespace AddLikeRepository{

@@ -1,7 +1,7 @@
-import { RemoveLike } from "@/domain/useCases/create-post"
+import { RemoveLike } from "@/domain"
 
 export interface RemoveLikeRepository{
-  remove: (likeId:RemoveLikeRepository.Params) => Promise<RemoveLikeRepository.Result>
+  removeLike: (likeId:RemoveLikeRepository.Params) => Promise<RemoveLikeRepository.Result>
 }
 
 export namespace RemoveLikeRepository{
