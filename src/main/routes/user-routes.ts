@@ -7,5 +7,5 @@ export default (router: Router): void => {
   router.put('/updateProfile', auth, adaptRoute(makeProfileUpdateController()))
   router.put('/updateClass', auth , adaptRoute(makeUserClassUpdateController()))
   router.put('/updateLastClass', auth ,adaptRoute(makeUserLastClassUpdateController()))
-  router.get('/getProfile', auth, adaptRoute(makeUserGetProfileController()))
+  router.post('/getProfile', auth, adaptRoute(makeUserGetProfileController()))
 }

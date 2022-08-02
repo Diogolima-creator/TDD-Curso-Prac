@@ -9,5 +9,8 @@ export namespace GetProfileUser{
       id?: string
   }
 
-  export type Result = UserModel 
+  export type Result = {
+    profile: UserModel
+    status: string
+  }
 }

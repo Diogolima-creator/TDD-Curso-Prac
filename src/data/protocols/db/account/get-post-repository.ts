@@ -5,5 +5,5 @@ export interface GetPostRepository{
 }
 
 export namespace GetPostRepository{
-  export type Result = GetPost.Result
+  export type Result = GetPost.Result["posts"]
 }

@@ -6,7 +6,8 @@ export class DbGetProfileUser implements GetProfileUser {
   constructor(private readonly getProfileUserRepository: GetProfileUserRepository){}
 
   async get (userDateID: string): Promise<GetProfileUser.Result> {
-    return this.getProfileUserRepository.getProfile(userDateID)
+    const profile = await this.getProfileUserRepository.getProfile(userDateID)
+    return { profile, status: 'ok'}
   }
 }
 

@@ -16,7 +16,7 @@ export class UserGetProfileController implements Controller {
         return badRequest(error)
       }
       const userProfile = await this.getProfileUser.get(request.id)
-      return userProfile.username ? ok(userProfile) : noContent()
+      return (await userProfile.profile).username ? ok(userProfile) : noContent()
     }catch(error){
       return serverError(error)
     }

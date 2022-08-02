@@ -6,7 +6,8 @@ export class DbGetPost implements GetPost {
   constructor(private readonly getPostRepository: GetPostRepository){}
 
   async getAll (): Promise<GetPost.Result> {
-    return this.getPostRepository.getAll()
+    const posts:GetPost.Result["posts"] = await this.getPostRepository.getAll()
+    return { posts, status: 'ok'}
   }
 }
 

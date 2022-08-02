@@ -5,5 +5,8 @@ export interface GetPost {
 }
 
 export namespace GetPost{
-  export type Result = PostModel[]
+  export type Result = {
+    posts: PostModel[]
+    status: string
+  }
 }
