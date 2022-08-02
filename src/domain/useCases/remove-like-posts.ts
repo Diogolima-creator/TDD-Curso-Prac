@@ -1,4 +1,4 @@
-import { LikeModel } from "../models"
+import { LikeModel, PostModel } from "../models"
 
 export interface RemoveLike {
     remove?: (likeId: LikeModel) => Promise<RemoveLike.Result>
@@ -6,5 +6,5 @@ export interface RemoveLike {
 
 export namespace RemoveLike{
     export type Params = LikeModel
-    export type Result = Boolean
+    export type Result = {post:PostModel}
 }

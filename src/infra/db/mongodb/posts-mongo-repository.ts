@@ -17,23 +17,25 @@ export class PostsMongoRepository implements CreatePostRepository,GetPostReposit
     return result !== null 
   }
 
-  async addComment(comment: CommentModel): Promise<void>{
+  async addComment(comment: CommentModel): Promise<AddCommentRepository.Result>{
     const postsCollection = MongoHelper.getCollection('posts')
     await postsCollection.updateOne({
-      _id: new ObjectId(comment.id)
+      _id: new ObjectId(comment.idPost)
     }, {
       $push: {
         Comments:[comment.profilePic,comment.comment, comment.username, comment.level]
       }
     })
+    let post = await postsCollection.findOne({ _id: new ObjectId(comment.idPost) })
+    return post && MongoHelper.map(post)
   }
 
-  async addLike(likeId: LikeModel): Promise<Boolean>{
+  async addLike(likeId: LikeModel): Promise<AddLikeRepository.Result>{
     const postsCollection = MongoHelper.getCollection('posts')
-    const post = await postsCollection.findOne({ _id: new ObjectId(likeId.idPost) })
+    let post = await postsCollection.findOne({ _id: new ObjectId(likeId.idPost) })
     
     if((post.Likes.filter((item:string) => item === likeId.idUser)).length !== 0 ){
-      return false
+      return null
     }
 
     await postsCollection.updateOne({
@@ -43,15 +45,17 @@ export class PostsMongoRepository implements CreatePostRepository,GetPostReposit
         Likes: likeId.idUser
       }
     })
-    return true
+
+    post = await postsCollection.findOne({ _id: new ObjectId(likeId.idPost) })
+    return post && MongoHelper.map(post)
   }
   
-  async removeLike(likeId: LikeModel): Promise<Boolean>{
+  async removeLike(likeId: LikeModel): Promise<RemoveLikeRepository.Result>{
     const postsCollection = MongoHelper.getCollection('posts')
-    const post = await postsCollection.findOne({ _id: new ObjectId(likeId.idPost) })
+    let post = await postsCollection.findOne({ _id: new ObjectId(likeId.idPost) })
     
     if((post.Likes.filter((item:string) => item === likeId.idUser)).length === 0 ){
-      return false
+      return null
     }
 
     await postsCollection.updateOne({
@@ -61,6 +65,7 @@ export class PostsMongoRepository implements CreatePostRepository,GetPostReposit
         Likes: likeId.idUser
       }
     })
-    return true
+    post = await postsCollection.findOne({ _id: new ObjectId(likeId.idPost) })
+    return post && MongoHelper.map(post)
   }
 }

@@ -10,8 +10,9 @@ export class PostAddLikeController implements Controller {
   async handle(request: PostAddLikeController.Request): Promise<HttpResponse>{
     try{
       const addLikeResult = await this.addLike.add(request)
-      return addLikeResult === true ? ok(addLikeResult) : noContent()
+      return addLikeResult ? ok(addLikeResult) : noContent()
     } catch(error){
+      console.log(error)
       return serverError(error)
     }
   }

@@ -3,5 +3,5 @@ export interface CommentModel{
   comment: string
   username: string
   level: string
-  id: string
+  idPost: string
 }

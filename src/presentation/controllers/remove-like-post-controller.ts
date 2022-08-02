@@ -10,8 +10,9 @@ export class PostRemoveLikeController implements Controller {
   async handle(request: PostRemoveLikeController.Request): Promise<HttpResponse>{
     try{
       const removeLikeResult = await this.removeLike.remove(request)
-      return removeLikeResult === true ? ok(removeLikeResult) : noContent()
+      return removeLikeResult  ? ok(removeLikeResult) : noContent()
     } catch(error){
+      console.log(error)
       return serverError(error)
     }
   }

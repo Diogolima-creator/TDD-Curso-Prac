@@ -1,4 +1,4 @@
-import { LikeModel } from "../models"
+import { LikeModel, PostModel } from "../models"
 
 export interface AddLike {
     add?: (likeId: LikeModel) => Promise<AddLike.Result>
@@ -6,5 +6,5 @@ export interface AddLike {
 
 export namespace AddLike{
     export type Params = LikeModel
-    export type Result = Boolean
+    export type Result = {post:PostModel}
 }
