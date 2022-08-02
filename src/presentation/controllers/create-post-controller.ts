@@ -1,5 +1,5 @@
 import { Controller, HttpResponse } from '@/presentation/protocols'
-import { serverError, ok } from '@/presentation/helpers'
+import { serverError, ok, noContent } from '@/presentation/helpers'
 import { CreatePost } from '@/domain'
 
 export class PostCreateController implements Controller {
@@ -10,7 +10,7 @@ export class PostCreateController implements Controller {
   async handle(request: CreatePostController.Request): Promise<HttpResponse>{
     try{
       const postModel = await this.createPost.create(request)
-      return ok(postModel)
+      return postModel === true ? ok(postModel) : noContent()
     } catch(error){
       return serverError(error)
     }
