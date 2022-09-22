@@ -1,7 +1,7 @@
 import { makeLogControllerDecorator } from '@/main/factories'
 import { Controller } from '@/presentation/protocols'
 import { PostRemoveLikeController } from '@/presentation/controllers'
-import { makeDbRemoveLikePost } from '@/main/factories'
+import { makeDbRemoveLikePost } from '@/main/factories/useCases'
 
 export const makeRemoveLikePostController = (): Controller => {
   const controller = new PostRemoveLikeController(makeDbRemoveLikePost())

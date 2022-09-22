@@ -1,7 +1,8 @@
-import { makeLogControllerDecorator, makeDbUpdateLastClassUser } from '@/main/factories'
+import { makeLogControllerDecorator } from '@/main/factories'
 import { Controller } from '@/presentation/protocols'
 import { UserUpdateController } from '@/presentation/controllers'
 import { makeUserUpdateValidation } from './update-user-validation-factory'
+import { makeDbUpdateLastClassUser } from '@/main/factories/useCases'
 
 export const makeUserLastClassUpdateController = (): Controller => {
   const controller = new UserUpdateController(makeDbUpdateLastClassUser(), makeUserUpdateValidation())
