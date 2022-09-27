@@ -1,4 +1,4 @@
-import { makeLogControllerDecorator, makeDbUpdateClassUser } from '@/main/factories'
+import { makeLogControllerDecorator } from '@/main/factories'
 import { Controller } from '@/presentation/protocols'
 import { UserGetProfileController } from '@/presentation/controllers'
 import { makeDbGetProfileUser } from '@/main/factories/useCases'

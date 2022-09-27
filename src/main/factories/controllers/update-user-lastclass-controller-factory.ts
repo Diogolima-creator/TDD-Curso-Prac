@@ -1,4 +1,4 @@
-import { makeLogControllerDecorator } from '@/main/factories'
+import { makeLogControllerDecorator } from '@/main/factories/decorators'
 import { Controller } from '@/presentation/protocols'
 import { UserUpdateController } from '@/presentation/controllers'
 import { makeUserUpdateValidation } from './update-user-validation-factory'
