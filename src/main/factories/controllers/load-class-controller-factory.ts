@@ -1,5 +1,5 @@
 import { makeLogControllerDecorator } from '@/main/factories'
-import { makeDbLoadClasses } from '@/main/factories/useCases'
+import { makeDbLoadClasses } from '@/main/factories/usecases'
 import { Controller } from '@/presentation/protocols'
 import { LoadClassesController } from '@/presentation/controllers'
 

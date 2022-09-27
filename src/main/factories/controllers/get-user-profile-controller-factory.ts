@@ -1,7 +1,7 @@
 import { makeLogControllerDecorator } from '@/main/factories'
 import { Controller } from '@/presentation/protocols'
 import { UserGetProfileController } from '@/presentation/controllers'
-import { makeDbGetProfileUser } from '@/main/factories/useCases'
+import { makeDbGetProfileUser } from '@/main/factories/usecases'
 import { makeUserGetValidation } from '@/main/factories'
 
 export const makeUserGetProfileController = (): Controller => {
