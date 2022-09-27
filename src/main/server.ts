@@ -6,7 +6,7 @@ MongoHelper.connect(process.env.MONGODBURL)
       async() => {
         const { setupApp } = await import('./config/app')
         const app = await setupApp()
-        app.listen(9999, () => console.log(`server running in port 9999`))
+        app.listen(process.env.PORT || 3333, () => console.log(`server running in port 9999`))
       }
     )
     .catch(console.error)
